@@ -1,0 +1,30 @@
+
+sudo: false
+
+language: 'php'
+
+php:
+  - '7.0'
+
+env:
+  - COMPOSER_NO_INTERACTION=1 COMPOSER_DISABLE_XDEBUG_WARN=1
+
+cache:
+  directories:
+    - '$HOME/.composer/cache'
+
+before_install:
+  - 'which phpdbg && phpenv config-rm xdebug.ini || true'
+
+install:
+  - 'composer install'
+
+script:
+  - 'bin/robo lint'
+  - 'bin/robo test'
+
+after_success:
+  - 'bash <(curl -s https://codecov.io/bash)'
+
+notifications:
+  email: false
