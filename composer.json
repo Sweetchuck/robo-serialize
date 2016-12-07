@@ -10,7 +10,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "consolidation/robo": "~1.0",
         "samsonasik/package-versions": "~1.1",
         "symfony/yaml": "~2.8||~3.1"
@@ -19,7 +19,8 @@
         "cheppers/git-hooks": "~0.0.8",
         "cheppers/robo-git": "^0.0.2",
         "cheppers/robo-phpcs": "~0.0.10",
-        "codeception/codeception": "^2.2"
+        "codeception/codeception": "^2.2",
+        "webmozart/path-util": "^2.3"
     },
     "autoload": {
         "psr-4": {
