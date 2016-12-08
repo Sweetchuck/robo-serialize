@@ -15,7 +15,7 @@ use Webmozart\PathUtil\Path;
 class RoboFile extends \Robo\Tasks
     // @codingStandardsIgnoreEnd
 {
-    use \Cheppers\Robo\Git\Task\LoadTasks;
+    use \Cheppers\Robo\Git\GitTaskLoader;
     use \Cheppers\Robo\Phpcs\LoadPhpcsTasks;
 
     /**

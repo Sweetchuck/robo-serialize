@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "35846a5e12bf21d3ba63992d3afe2e90",
-    "content-hash": "2d3f3f7cef6143e6ee64eb3a6516cf9f",
+    "hash": "526fee4a4c509aaff880d3c6adfb7465",
+    "content-hash": "b84bb8f6c1adeb3a0510556e75b415a3",
     "packages": [
         {
             "name": "consolidation/annotated-command",
@@ -1273,21 +1273,21 @@
         },
         {
             "name": "cheppers/robo-git",
-            "version": "v0.0.2",
+            "version": "v0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Cheppers/robo-git.git",
-                "reference": "881fc493fed2913092754c28a2a04ff608560a0e"
+                "reference": "09f2a38b28a976639cf4dec423c215272443b3f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Cheppers/robo-git/zipball/881fc493fed2913092754c28a2a04ff608560a0e",
-                "reference": "881fc493fed2913092754c28a2a04ff608560a0e",
+                "url": "https://api.github.com/repos/Cheppers/robo-git/zipball/09f2a38b28a976639cf4dec423c215272443b3f3",
+                "reference": "09f2a38b28a976639cf4dec423c215272443b3f3",
                 "shasum": ""
             },
             "require": {
                 "cheppers/asset-jar": "^0.0.1",
-                "consolidation/robo": "^1.0.0"
+                "consolidation/robo": "^1.0"
             },
             "require-dev": {
                 "cheppers/git-hooks": "^0.0.8",
@@ -1305,7 +1305,7 @@
                 "GPL-2.0"
             ],
             "description": "Robo task to read the content of the staged files",
-            "time": "2016-10-15 09:27:04"
+            "time": "2016-11-19 14:25:00"
         },
         {
             "name": "cheppers/robo-phpcs",
