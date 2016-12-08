@@ -12,12 +12,29 @@ use Symfony\Component\Yaml\Yaml;
 
 class SerializeTask extends BaseTask
 {
+    /**
+     * File handler.
+     *
+     * @var resource
+     */
+    protected $destinationResource = null;
+
+    /**
+     * @var OutputInterface
+     */
+    protected $destinationOutput = null;
+
     public function __construct(array $options = [])
     {
-        $this->options($options);
+        $this->setOptions($options);
     }
 
-    public function options(array $options)
+    /**
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function setOptions(array $options)
     {
         foreach ($options as $key => $value) {
             switch ($key) {
@@ -34,8 +51,11 @@ class SerializeTask extends BaseTask
                     break;
             }
         }
+
+        return $this;
     }
 
+    //region Option - subject.
     /**
      * The variable to serialize.
      *
@@ -53,14 +73,18 @@ class SerializeTask extends BaseTask
 
     /**
      * @param mixed $subject
+     *
+     * @return $this
      */
-    public function setSubject($subject): self
+    public function setSubject($subject)
     {
         $this->subject = $subject;
 
         return $this;
     }
+    //endregion
 
+    //region Option - serializer.
     /**
      * @var string
      */
@@ -71,7 +95,12 @@ class SerializeTask extends BaseTask
         return $this->serializer;
     }
 
-    public function setSerializer(string $serializer): self
+    /**
+     * @param string $serializer
+     *
+     * @return $this
+     */
+    public function setSerializer(string $serializer)
     {
         if (!in_array($serializer, ['json', 'yml', 'yaml'])) {
             throw new \InvalidArgumentException();
@@ -81,7 +110,9 @@ class SerializeTask extends BaseTask
 
         return $this;
     }
+    //endregion
 
+    //region Option - destination.
     /**
      * @var string|resource|OutputInterface
      */
@@ -97,8 +128,10 @@ class SerializeTask extends BaseTask
 
     /**
      * @param string|resource|OutputInterface $destination
+     *
+     * @return $this
      */
-    public function setDestination($destination): self
+    public function setDestination($destination)
     {
         if ($destination instanceof OutputInterface
           || (is_resource($destination) && get_resource_type($destination) === 'stream')
@@ -111,20 +144,12 @@ class SerializeTask extends BaseTask
 
         throw new \InvalidArgumentException();
     }
+    //endregion
 
     /**
-     * File handler.
-     *
-     * @var resource
+     * {@inheritdoc}
      */
-    protected $destinationResource = null;
-
-    /**
-     * @var OutputInterface
-     */
-    protected $destinationOutput = null;
-
-    public function run()
+    public function run(): Result
     {
         $this
             ->initOutput()
@@ -136,8 +161,10 @@ class SerializeTask extends BaseTask
 
     /**
      * Initialize the destination Output.
+     *
+     * @return $this
      */
-    protected function initOutput(): self
+    protected function initOutput()
     {
         $destination = $this->getDestination();
         if ($destination instanceof OutputInterface) {
@@ -185,7 +212,12 @@ class SerializeTask extends BaseTask
         return $serialized;
     }
 
-    protected function release(string $serialized): self
+    /**
+     * @param string $serialized
+     *
+     * @return $this
+     */
+    protected function release(string $serialized)
     {
         $this->destinationOutput->write($serialized);
 
@@ -194,6 +226,8 @@ class SerializeTask extends BaseTask
 
     /**
      * @param resource $resource
+     *
+     * @return \Symfony\Component\Console\Output\OutputInterface
      */
     protected function createStreamOutput($resource): OutputInterface
     {
@@ -202,8 +236,10 @@ class SerializeTask extends BaseTask
 
     /**
      * Close the destination resource if it was opened here.
+     *
+     * @return $this
      */
-    protected function closeStreamOutput(): self
+    protected function closeStreamOutput()
     {
         if ($this->destinationResource) {
             fclose($this->destinationResource);
@@ -212,6 +248,11 @@ class SerializeTask extends BaseTask
         return $this;
     }
 
+    /**
+     * @param array $subject
+     *
+     * @return $this
+     */
     protected function toArray(array &$subject)
     {
         foreach (array_keys($subject) as $key) {
@@ -223,5 +264,7 @@ class SerializeTask extends BaseTask
                 $this->toArray($subject[$key]);
             }
         }
+
+        return $this;
     }
 }

@@ -1,17 +1,19 @@
 <?php
 
-use Cheppers\Robo\Serialize\Task\SerializeTask;
-use Codeception\Util\Stub;
-use Symfony\Component\Console\Output\BufferedOutput;
+namespace Cheppers\Robo\Serialize\Tests\Unit;
 
-// @codingStandardsIgnoreStart
+use Cheppers\Robo\Serialize\Task\SerializeTask;
+use Codeception\Test\Unit;
+use Codeception\Util\Stub;
+use Robo\Robo;
+use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Filesystem\Filesystem;
+
 /**
  * @covers \Cheppers\Robo\Serialize\Task\SerializeTask
  */
-class SerializeTaskTest extends \Codeception\Test\Unit
+class SerializeTaskTest extends Unit
 {
-    // @codingStandardsIgnoreEnd
-
     /**
      * @var \UnitTester
      */
@@ -27,10 +29,13 @@ class SerializeTaskTest extends \Codeception\Test\Unit
             mkdir($tmpDir, 0777 - umask(), true);
         }
 
-        return parent::setUp();
+        parent::setUp();
     }
 
     // @codingStandardsIgnoreStart
+    /**
+     * {@inheritdoc}
+     */
     public function _after()
     {
         // @codingStandardsIgnoreEnd
@@ -38,12 +43,11 @@ class SerializeTaskTest extends \Codeception\Test\Unit
 
         $tmpDir = codecept_output_dir('tmp');
         if (is_dir($tmpDir)) {
-            $fs = new \Symfony\Component\Filesystem\Filesystem();
-            $fs->remove($tmpDir);
+            (new Filesystem())->remove($tmpDir);
         }
     }
 
-    public function testGetSetSerializer()
+    public function testGetSetSerializer(): void
     {
         $task = new SerializeTask();
 
@@ -63,7 +67,7 @@ class SerializeTaskTest extends \Codeception\Test\Unit
         }
     }
 
-    public function testGetSetDestination()
+    public function testGetSetDestination(): void
     {
         $task = new SerializeTask();
 
@@ -87,7 +91,7 @@ class SerializeTaskTest extends \Codeception\Test\Unit
         }
     }
 
-    public function testOptions()
+    public function testOptions(): void
     {
         $options = [
             'subject' => ['a' => 'b'],
@@ -166,7 +170,7 @@ class SerializeTaskTest extends \Codeception\Test\Unit
     /**
      * @dataProvider casesRun
      */
-    public function testRunOutput(string $expected, string $serializer, $subject)
+    public function testRunOutput(string $expected, string $serializer, $subject): void
     {
         $destination = new BufferedOutput();
 
@@ -184,7 +188,7 @@ class SerializeTaskTest extends \Codeception\Test\Unit
     /**
      * @dataProvider casesRun
      */
-    public function testRunString(string $expected, string $serializer, $subject)
+    public function testRunString(string $expected, string $serializer, $subject): void
     {
         $destination = codecept_output_dir('tmp/destination.txt');
         $this->tester->assertFileNotExists($destination);
@@ -204,7 +208,7 @@ class SerializeTaskTest extends \Codeception\Test\Unit
     /**
      * @dataProvider casesRun
      */
-    public function testRunResource(string $expected, string $serializer, $subject)
+    public function testRunResource(string $expected, string $serializer, $subject): void
     {
         $fileName = codecept_output_dir('tmp/destination.txt');
         $this->tester->assertFileNotExists($fileName);
@@ -224,8 +228,8 @@ class SerializeTaskTest extends \Codeception\Test\Unit
 
     protected function getTask(): SerializeTask
     {
-        $container = \Robo\Robo::createDefaultContainer();
-        \Robo\Robo::setContainer($container);
+        $container = Robo::createDefaultContainer();
+        Robo::setContainer($container);
 
         /** @var \Cheppers\Robo\Serialize\Task\SerializeTask $task */
         $task = Stub::construct(SerializeTask::class, [[], []]);

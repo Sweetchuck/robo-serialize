@@ -13,9 +13,11 @@ use Robo\Collection\CollectionBuilder;
 trait SerializeTaskLoader
 {
     /**
+     * @param array $options
+     *
      * @return SerializeTask|CollectionBuilder
      */
-    protected function taskSerialize(array $options = [])
+    protected function taskSerialize(array $options = []): CollectionBuilder
     {
         return $this->task(SerializeTask::class, $options);
     }

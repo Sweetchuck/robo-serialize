@@ -27,6 +27,12 @@
             "Cheppers\\Robo\\Serialize\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Cheppers\\Robo\\Serialize\\Tests\\Acceptance\\": "tests/acceptance/",
+            "Cheppers\\Robo\\Serialize\\Tests\\Unit\\": "tests/unit/"
+        }
+    },
     "scripts": {
         "post-install-cmd": [
             "@deploy-git-hooks"
