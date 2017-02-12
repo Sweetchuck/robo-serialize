@@ -8,25 +8,27 @@ class SerializeTaskCest
 {
     public function testSerializeYaml(AcceptanceTester $I): void
     {
-        $I->runRoboTask('serialize:yaml');
-        $I->expectTheExitCodeToBe(0);
-        $I->seeThisTextInTheStdOutput(implode("\n", [
+        $expectedStdOutput = implode("\n", [
             '---',
             'a: b',
             '...',
             '',
-        ]));
+        ]);
+        $I->runRoboTask(\SerializeTaskRoboFile::class, 'serialize:yaml');
+        $I->assertEquals(0, $I->getRoboTaskExitCode());
+        $I->assertEquals($expectedStdOutput, $I->getRoboTaskStdOutput());
     }
 
     public function testSerializeJson(AcceptanceTester $I): void
     {
-        $I->runRoboTask('serialize:json');
-        $I->expectTheExitCodeToBe(0);
-        $I->seeThisTextInTheStdOutput(implode("\n", [
+        $expectedStdOutput = implode("\n", [
             '{',
             '    "a": "b"',
             '}',
             '',
-        ]));
+        ]);
+        $I->runRoboTask(\SerializeTaskRoboFile::class, 'serialize:json');
+        $I->assertEquals(0, $I->getRoboTaskExitCode());
+        $I->assertEquals($expectedStdOutput, $I->getRoboTaskStdOutput());
     }
 }

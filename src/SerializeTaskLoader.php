@@ -5,17 +5,10 @@ namespace Cheppers\Robo\Serialize;
 use Cheppers\Robo\Serialize\Task\SerializeTask;
 use Robo\Collection\CollectionBuilder;
 
-/**
- * Class SerializeTaskLoader.
- *
- * @package Cheppers\Robo\Serialize
- */
 trait SerializeTaskLoader
 {
     /**
-     * @param array $options
-     *
-     * @return SerializeTask|CollectionBuilder
+     * @return \Cheppers\Robo\Serialize\Task\SerializeTask|\Robo\Collection\CollectionBuilder
      */
     protected function taskSerialize(array $options = []): CollectionBuilder
     {

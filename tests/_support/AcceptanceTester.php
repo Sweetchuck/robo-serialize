@@ -22,68 +22,6 @@ class AcceptanceTester extends \Codeception\Actor
     use _generated\AcceptanceTesterActions;
 
     /**
-     * @param string $taskName
-     *
-     * @return $this
+     * Define custom actions here
      */
-    public function runRoboTask($taskName, array $args = [], array $options = [])
-    {
-        $cmdPattern = 'cd tests/_data && ../../bin/robo %s';
-        $cmdArgs = [
-            escapeshellarg($taskName)
-        ];
-
-        foreach ($options as $option => $value) {
-            $cmdPattern .= " --$option";
-            if ($value !== null) {
-                $cmdPattern .= '=%s';
-                $cmdArgs[] = escapeshellarg($value);
-            }
-        }
-
-        $cmdPattern .= str_repeat(' %s', count($args));
-        foreach ($args as $arg) {
-            $cmdArgs[] = escapeshellarg($arg);
-        }
-
-        $this->runShellCommand(vsprintf($cmdPattern, $cmdArgs));
-
-        return $this;
-    }
-
-    /**
-     * @param string $expected
-     *
-     * @return $this
-     */
-    public function seeThisTextInTheStdOutput($expected)
-    {
-        Assert::assertContains($expected, $this->getStdOutput());
-
-        return $this;
-    }
-
-    /**
-     * @param string $expected
-     *
-     * @return $this
-     */
-    public function seeThisTextInTheStdError($expected)
-    {
-        Assert::assertContains($expected, $this->getStdError());
-
-        return $this;
-    }
-
-    /**
-     * @param int $expected
-     *
-     * @return $this
-     */
-    public function expectTheExitCodeToBe($expected)
-    {
-        Assert::assertEquals($expected, $this->getExitCode());
-
-        return $this;
-    }
 }

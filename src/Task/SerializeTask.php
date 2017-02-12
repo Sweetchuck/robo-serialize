@@ -30,8 +30,6 @@ class SerializeTask extends BaseTask
     }
 
     /**
-     * @param array $options
-     *
      * @return $this
      */
     public function setOptions(array $options)
@@ -72,8 +70,6 @@ class SerializeTask extends BaseTask
     }
 
     /**
-     * @param mixed $subject
-     *
      * @return $this
      */
     public function setSubject($subject)
@@ -96,8 +92,6 @@ class SerializeTask extends BaseTask
     }
 
     /**
-     * @param string $serializer
-     *
      * @return $this
      */
     public function setSerializer(string $serializer)
@@ -213,8 +207,6 @@ class SerializeTask extends BaseTask
     }
 
     /**
-     * @param string $serialized
-     *
      * @return $this
      */
     protected function release(string $serialized)
@@ -249,8 +241,6 @@ class SerializeTask extends BaseTask
     }
 
     /**
-     * @param array $subject
-     *
      * @return $this
      */
     protected function toArray(array &$subject)

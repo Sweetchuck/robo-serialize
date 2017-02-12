@@ -1,17 +1,14 @@
 <?php
 
-use Robo\Collection\CollectionBuilder;
+use Robo\Contract\TaskInterface;
 
-/**
- * Class RoboFile.
- */
 // @codingStandardsIgnoreStart
-class RoboFile extends \Robo\Tasks
+class SerializeTaskRoboFile extends \Robo\Tasks
 {
     // @codingStandardsIgnoreEnd
     use \Cheppers\Robo\Serialize\SerializeTaskLoader;
 
-    public function serializeYaml(): CollectionBuilder
+    public function serializeYaml(): TaskInterface
     {
         return $this->taskSerialize()
             ->setSubject(['a' => 'b'])
@@ -19,7 +16,7 @@ class RoboFile extends \Robo\Tasks
             ->setSerializer('yaml');
     }
 
-    public function serializeJson(): CollectionBuilder
+    public function serializeJson(): TaskInterface
     {
         return $this->taskSerialize()
             ->setSubject(['a' => 'b'])
