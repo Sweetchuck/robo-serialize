@@ -1230,24 +1230,25 @@
         },
         {
             "name": "cheppers/robo-git",
-            "version": "v0.0.3",
+            "version": "v0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Cheppers/robo-git.git",
-                "reference": "09f2a38b28a976639cf4dec423c215272443b3f3"
+                "reference": "c2d9ab23c61feb693b9ca70d2a97dd5d2e1bdee1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Cheppers/robo-git/zipball/09f2a38b28a976639cf4dec423c215272443b3f3",
-                "reference": "09f2a38b28a976639cf4dec423c215272443b3f3",
+                "url": "https://api.github.com/repos/Cheppers/robo-git/zipball/c2d9ab23c61feb693b9ca70d2a97dd5d2e1bdee1",
+                "reference": "c2d9ab23c61feb693b9ca70d2a97dd5d2e1bdee1",
                 "shasum": ""
             },
             "require": {
-                "cheppers/asset-jar": "^0.0.1",
-                "consolidation/robo": "^1.0"
+                "cheppers/asset-jar": "^0.0",
+                "consolidation/robo": "^1.0",
+                "php": ">=7.1"
             },
             "require-dev": {
-                "cheppers/git-hooks": "^0.0.8",
+                "cheppers/git-hooks": "^0.0",
                 "codeception/codeception": "^2.2",
                 "squizlabs/php_codesniffer": "^2.7"
             },
@@ -1262,7 +1263,7 @@
                 "GPL-2.0"
             ],
             "description": "Robo task to read the content of the staged files",
-            "time": "2016-11-19T14:25:00+00:00"
+            "time": "2017-03-19T12:37:36+00:00"
         },
         {
             "name": "cheppers/robo-phpcs",
