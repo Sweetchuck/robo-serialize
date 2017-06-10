@@ -29,6 +29,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Cheppers\\Robo\\Serialize\\Test\\Helper\\": "tests/_support/Helper/",
             "Cheppers\\Robo\\Serialize\\Tests\\Acceptance\\": "tests/acceptance/",
             "Cheppers\\Robo\\Serialize\\Tests\\Unit\\": "tests/unit/"
         },
