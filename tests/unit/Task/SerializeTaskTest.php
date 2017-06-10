@@ -3,6 +3,8 @@
 namespace Cheppers\Robo\Serialize\Tests\Unit;
 
 use Cheppers\Robo\Serialize\Task\SerializeTask;
+use Cheppers\Robo\Serialize\Test\Helper\Dummy\Subject01;
+use Cheppers\Robo\Serialize\Test\Helper\Dummy\Subject02;
 use Codeception\Test\Unit;
 use Codeception\Util\Stub;
 use Robo\Robo;
@@ -113,9 +115,16 @@ class SerializeTaskTest extends Unit
         $subjectDeep->foo->bar = new \stdClass();
         $subjectDeep->foo->bar->baz = new \stdClass();
         $subjectDeep->foo->bar->baz->a = 'b';
+        $subjectObject = [
+            'normal' => new Subject01(),
+            'serializable' => new Subject02(['d' => 'e']),
+            'r1' => STDERR,
+        ];
+
+        $null = function_exists('yaml_emit') ? '~' : 'null';
 
         return [
-            'json; simple;' => [
+            'simple - json;' => [
                 implode("\n", [
                     '{',
                     '    "foo": "bar"',
@@ -125,7 +134,17 @@ class SerializeTaskTest extends Unit
                 'json',
                 $subjectSimple,
             ],
-            'json; deep;' => [
+            'simple - yaml' => [
+                implode("\n", [
+                    '---',
+                    'foo: bar',
+                    '...',
+                    '',
+                ]),
+                'yaml',
+                $subjectSimple,
+            ],
+            'deep - json;' => [
                 implode("\n", [
                     '{',
                     '    "foo": {',
@@ -141,17 +160,7 @@ class SerializeTaskTest extends Unit
                 'json',
                 $subjectDeep,
             ],
-            'yaml; simple' => [
-                implode("\n", [
-                    '---',
-                    'foo: bar',
-                    '...',
-                    '',
-                ]),
-                'yaml',
-                $subjectSimple,
-            ],
-            'yaml; deep' => [
+            'deep - yaml' => [
                 implode("\n", [
                     '---',
                     'foo:',
@@ -163,6 +172,36 @@ class SerializeTaskTest extends Unit
                 ]),
                 'yaml',
                 $subjectDeep,
+            ],
+            'object - json' => [
+                implode("\n", [
+                    '{',
+                    '    "normal": {',
+                    '        "myPublic": "a"',
+                    '    },',
+                    '    "serializable": {',
+                    '        "d": "e"',
+                    '    },',
+                    '    "r1": null',
+                    '}',
+                    '',
+                ]),
+                'json',
+                $subjectObject,
+            ],
+            'object - yaml' => [
+                implode("\n", [
+                    '---',
+                    'normal:',
+                    '  myPublic: a',
+                    'serializable:',
+                    '  d: e',
+                    "r1: $null",
+                    '...',
+                    '',
+                ]),
+                'yaml',
+                $subjectObject,
             ],
         ];
     }

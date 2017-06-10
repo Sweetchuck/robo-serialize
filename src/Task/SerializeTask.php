@@ -179,15 +179,14 @@ class SerializeTask extends BaseTask
     protected function serialize(): string
     {
         $serialized = '';
+        $subject = $this->toFlat($this->getSubject());
         switch ($this->getSerializer()) {
             case 'json':
-                $serialized = json_encode($this->getSubject(), JSON_PRETTY_PRINT) . "\n";
+                $serialized = json_encode($subject, JSON_PRETTY_PRINT) . "\n";
                 break;
 
             case 'yml':
             case 'yaml':
-                $subject = (array) $this->getSubject();
-                $this->toArray($subject);
                 if (function_exists('yaml_emit')) {
                     $serialized = yaml_emit($subject);
                 } else {
@@ -241,20 +240,37 @@ class SerializeTask extends BaseTask
     }
 
     /**
-     * @return $this
+     * @return mixed
      */
-    protected function toArray(array &$subject)
+    protected function toFlat($subject)
     {
-        foreach (array_keys($subject) as $key) {
-            if (is_object($subject[$key])) {
-                $subject[$key] = (array) $subject[$key];
-            }
-
-            if (is_array($subject[$key])) {
-                $this->toArray($subject[$key]);
-            }
+        if (is_null($subject) || is_scalar($subject)) {
+            return $subject;
         }
 
-        return $this;
+        if (is_object($subject)) {
+            $result = [];
+            if ($subject instanceof \JsonSerializable) {
+                $result = $subject->jsonSerialize();
+            } else {
+                foreach (get_object_vars($subject) as $key => $value) {
+                    $result[$key] = $this->toFlat($value);
+                }
+            }
+
+            return $result;
+        }
+
+        if (is_array($subject)) {
+            $result = [];
+            foreach ($subject as $key => $value) {
+                $result[$key] = $this->toFlat($value);
+            }
+
+            return $result;
+        }
+
+        // @todo It can be a "resource" or a "\Closure" as well.
+        return null;
     }
 }
