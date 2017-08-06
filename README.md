@@ -13,4 +13,4 @@ Run `composer require sweetchuck/robo-serialize`
 
 # Usage
 
-You can find basic examples [here](tests/_data/fixtures/RoboFiles/SerializeTaskRoboFile.php)
+You can find basic examples [here](tests/_support/Helper/RoboFiles/SerializeTaskRoboFile.php)
