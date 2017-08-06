@@ -1,5 +1,5 @@
 {
-    "name": "cheppers/robo-serialize",
+    "name": "sweetchuck/robo-serialize",
     "description": "Export variables in various format",
     "license": "GPL-2.0",
     "config": {
@@ -16,34 +16,29 @@
         "symfony/yaml": "^2.8 || ^3.1"
     },
     "require-dev": {
-        "cheppers/git-hooks": "^0.0",
-        "cheppers/robo-git": "^0.0",
-        "cheppers/robo-phpcs": "^0.0",
         "codeception/codeception": "^2.2",
+        "sweetchuck/codeception-module-robo-task-runner": "^0.0.1",
+        "sweetchuck/git-hooks": "^0.0",
+        "sweetchuck/robo-git": "^0.0",
+        "sweetchuck/robo-phpcs": "^0.0",
         "webmozart/path-util": "^2.3"
     },
     "autoload": {
         "psr-4": {
-            "Cheppers\\Robo\\Serialize\\": "src/"
+            "Sweetchuck\\Robo\\Serialize\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Cheppers\\Robo\\Serialize\\Test\\Helper\\": "tests/_support/Helper/",
-            "Cheppers\\Robo\\Serialize\\Tests\\Acceptance\\": "tests/acceptance/",
-            "Cheppers\\Robo\\Serialize\\Tests\\Unit\\": "tests/unit/"
-        },
-        "classmap": [
-            "tests/_data/fixtures/RoboFiles/"
-        ]
+            "Sweetchuck\\Robo\\Serialize\\Composer\\": "src-dev/Composer/",
+            "Sweetchuck\\Robo\\Serialize\\Test\\Helper\\": "tests/_support/Helper/",
+            "Sweetchuck\\Robo\\Serialize\\Tests\\Acceptance\\": "tests/acceptance/",
+            "Sweetchuck\\Robo\\Serialize\\Tests\\Unit\\": "tests/unit/"
+        }
     },
     "scripts": {
-        "post-install-cmd": [
-            "@deploy-git-hooks"
-        ],
-        "post-update-cmd": [
-            "@deploy-git-hooks"
-        ],
-        "deploy-git-hooks": "\\Cheppers\\GitHooks\\Main::deploy"
+        "post-install-cmd": "\\Sweetchuck\\Robo\\Serialize\\Composer\\Scripts::postInstallCmd",
+        "post-update-cmd": "\\Sweetchuck\\Robo\\Serialize\\Composer\\Scripts::postUpdateCmd",
+        "deploy-git-hooks": "\\Sweetchuck\\GitHooks\\Composer\\Scripts::deploy"
     }
 }

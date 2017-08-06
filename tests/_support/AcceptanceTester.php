@@ -1,6 +1,8 @@
 <?php
 
-use \PHPUnit_Framework_Assert as Assert;
+namespace Sweetchuck\Robo\Serialize\Test;
+
+use Codeception\Actor;
 
 /**
  * Inherited Methods
@@ -17,11 +19,7 @@ use \PHPUnit_Framework_Assert as Assert;
  *
  * @SuppressWarnings(PHPMD)
 */
-class AcceptanceTester extends \Codeception\Actor
+class AcceptanceTester extends Actor
 {
     use _generated\AcceptanceTesterActions;
-
-    /**
-     * Define custom actions here
-     */
 }

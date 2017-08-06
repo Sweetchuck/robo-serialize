@@ -1,10 +1,10 @@
 <?php
 
-namespace Cheppers\Robo\Serialize\Tests\Unit;
+namespace Sweetchuck\Robo\Serialize\Tests\Unit;
 
-use Cheppers\Robo\Serialize\Task\SerializeTask;
-use Cheppers\Robo\Serialize\Test\Helper\Dummy\Subject01;
-use Cheppers\Robo\Serialize\Test\Helper\Dummy\Subject02;
+use Sweetchuck\Robo\Serialize\Task\SerializeTask;
+use Sweetchuck\Robo\Serialize\Test\Helper\Dummy\Subject01;
+use Sweetchuck\Robo\Serialize\Test\Helper\Dummy\Subject02;
 use Codeception\Test\Unit;
 use Codeception\Util\Stub;
 use Robo\Robo;
@@ -12,12 +12,12 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * @covers \Cheppers\Robo\Serialize\Task\SerializeTask
+ * @covers \Sweetchuck\Robo\Serialize\Task\SerializeTask
  */
 class SerializeTaskTest extends Unit
 {
     /**
-     * @var \UnitTester
+     * @var \Sweetchuck\Robo\Serialize\Test\UnitTester
      */
     protected $tester;
 
@@ -270,7 +270,7 @@ class SerializeTaskTest extends Unit
         $container = Robo::createDefaultContainer();
         Robo::setContainer($container);
 
-        /** @var \Cheppers\Robo\Serialize\Task\SerializeTask $task */
+        /** @var \Sweetchuck\Robo\Serialize\Task\SerializeTask $task */
         $task = Stub::construct(SerializeTask::class, [[], []]);
 
         $task->setLogger($container->get('logger'));
