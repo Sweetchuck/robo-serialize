@@ -1,14 +1,14 @@
 <?php
 
-namespace Cheppers\Robo\Serialize;
+namespace Sweetchuck\Robo\Serialize;
 
-use Cheppers\Robo\Serialize\Task\SerializeTask;
+use Sweetchuck\Robo\Serialize\Task\SerializeTask;
 use Robo\Collection\CollectionBuilder;
 
 trait SerializeTaskLoader
 {
     /**
-     * @return \Cheppers\Robo\Serialize\Task\SerializeTask|\Robo\Collection\CollectionBuilder
+     * @return \Sweetchuck\Robo\Serialize\Task\SerializeTask|\Robo\Collection\CollectionBuilder
      */
     protected function taskSerialize(array $options = []): CollectionBuilder
     {

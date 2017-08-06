@@ -1,6 +1,6 @@
 <?php
 
-namespace Cheppers\Robo\Serialize\Task;
+namespace Sweetchuck\Robo\Serialize\Task;
 
 use PackageVersions\Versions;
 use Robo\Result;

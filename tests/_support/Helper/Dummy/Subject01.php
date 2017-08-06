@@ -1,6 +1,6 @@
 <?php
 
-namespace Cheppers\Robo\Serialize\Test\Helper\Dummy;
+namespace Sweetchuck\Robo\Serialize\Test\Helper\Dummy;
 
 class Subject01
 {

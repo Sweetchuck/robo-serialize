@@ -1,16 +1,19 @@
 <?php
 
-use Robo\Contract\TaskInterface;
+namespace Sweetchuck\Robo\Serialize\Test\Helper\RoboFiles;
 
-// @codingStandardsIgnoreStart
-class SerializeTaskRoboFile extends \Robo\Tasks
+use Robo\Contract\TaskInterface;
+use Robo\Tasks;
+use Sweetchuck\Robo\Serialize\SerializeTaskLoader;
+
+class SerializeTaskRoboFile extends Tasks
 {
-    // @codingStandardsIgnoreEnd
-    use \Cheppers\Robo\Serialize\SerializeTaskLoader;
+    use SerializeTaskLoader;
 
     public function serializeYaml(): TaskInterface
     {
-        return $this->taskSerialize()
+        return $this
+            ->taskSerialize()
             ->setSubject(['a' => 'b'])
             ->setDestination($this->output())
             ->setSerializer('yaml');
@@ -18,7 +21,8 @@ class SerializeTaskRoboFile extends \Robo\Tasks
 
     public function serializeJson(): TaskInterface
     {
-        return $this->taskSerialize()
+        return $this
+            ->taskSerialize()
             ->setSubject(['a' => 'b'])
             ->setDestination($this->output())
             ->setSerializer('json');

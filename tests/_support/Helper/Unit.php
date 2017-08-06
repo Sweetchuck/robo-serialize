@@ -1,8 +1,10 @@
 <?php
 
-namespace Cheppers\Robo\Serialize\Test\Helper;
+namespace Sweetchuck\Robo\Serialize\Test\Helper;
 
-class Unit extends \Codeception\Module
+use Codeception\Module;
+
+class Unit extends Module
 {
 
 }
