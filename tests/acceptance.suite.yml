@@ -1,7 +1,0 @@
-
-class_name: AcceptanceTester
-modules:
-    enabled:
-        - Asserts
-        - \Sweetchuck\Robo\Serialize\Test\Helper\Acceptance
-        - \Sweetchuck\Codeception\Module\RoboTaskRunner\RoboTaskRunner

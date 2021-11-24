@@ -1,17 +1,17 @@
 
-namespace: Sweetchuck\Robo\Serialize\Test
+namespace: 'Sweetchuck\Robo\Serialize\Test'
 
-actor: Tester
+actor: 'Tester'
 
 paths:
     tests: 'tests'
-    log: 'tests/_output'
     data: 'tests/_data'
-    support: 'tests/_support'
     envs: 'tests/_envs'
+    log: 'tests/_output'
+    support: 'tests/_support'
 
+bootstrap: '_bootstrap.php'
 settings:
-    bootstrap: '_bootstrap.php'
     colors: true
     memory_limit: '1024M'
 

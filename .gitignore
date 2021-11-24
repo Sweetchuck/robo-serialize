@@ -1,9 +1,12 @@
 
-/bin/
-/vendor/
-
 /tests/_data/actual/
 /tests/_output/
 /tests/_support/_generated/
 
+/vendor/
+
 /.git-hooks.local
+
+/robo.yml
+/RoboFileExample.php
+/RoboFileSerialize.php
