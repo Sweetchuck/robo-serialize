@@ -1,26 +1,48 @@
 {
+    "type": "robo-tasks",
+    "license": "GPL-2.0-or-later",
     "name": "sweetchuck/robo-serialize",
     "description": "Export variables in various format",
-    "license": "GPL-2.0",
-    "config": {
-        "bin-dir": "bin",
-        "sort-packages": true,
-        "optimize-autoloader": true
+    "keywords": [
+        "robo",
+        "serialize",
+        "yaml",
+        "json"
+    ],
+    "homepage": "https://github.com/Sweetchuck/robo-serialize",
+    "support": {
+        "source": "https://github.com/Sweetchuck/robo-serialize",
+        "issues": "https://github.com/Sweetchuck/robo-serialize/issues"
     },
+    "authors": [
+        {
+            "name": "Andor",
+            "role": "Maintainer",
+            "homepage": "https://github.com/Sweetchuck"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
     "require": {
-        "php": ">=7.1",
-        "consolidation/robo": "^1.0",
-        "samsonasik/package-versions": "^1.1",
-        "symfony/yaml": "^2.8 || ^3.1"
+        "php": ">=7.4",
+        "consolidation/robo": "^2.0"
     },
     "require-dev": {
-        "codeception/codeception": "^2.2",
-        "sweetchuck/codeception-module-robo-task-runner": "^0.0.1",
-        "sweetchuck/git-hooks": "^0.0",
-        "sweetchuck/robo-git": "^0.0",
-        "sweetchuck/robo-phpcs": "^0.0",
+        "codeception/codeception": "^4.0",
+        "codeception/module-asserts": "^1.1",
+        "nuvoleweb/robo-config": "2.x-dev",
+        "squizlabs/php_codesniffer": "^3.0",
+        "sweetchuck/codeception-module-robo-task-runner": "1.x-dev",
+        "sweetchuck/git-hooks": "2.x-dev",
+        "sweetchuck/robo-git": "1.x-dev",
+        "sweetchuck/robo-phpcs": "1.x-dev",
+        "symfony/debug": "^4.4 || ^5.0",
+        "symfony/error-handler": "^4.4 || ^5.0",
+        "symfony/yaml": "^4.4 || ^5.0",
         "webmozart/path-util": "^2.3"
     },
     "autoload": {
@@ -30,15 +52,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Sweetchuck\\Robo\\Serialize\\Composer\\": "src-dev/Composer/",
-            "Sweetchuck\\Robo\\Serialize\\Test\\Helper\\": "tests/_support/Helper/",
+            "Sweetchuck\\Robo\\Serialize\\Test\\": "tests/_support/",
             "Sweetchuck\\Robo\\Serialize\\Tests\\Acceptance\\": "tests/acceptance/",
             "Sweetchuck\\Robo\\Serialize\\Tests\\Unit\\": "tests/unit/"
         }
     },
     "scripts": {
-        "post-install-cmd": "\\Sweetchuck\\Robo\\Serialize\\Composer\\Scripts::postInstallCmd",
-        "post-update-cmd": "\\Sweetchuck\\Robo\\Serialize\\Composer\\Scripts::postUpdateCmd",
-        "deploy-git-hooks": "\\Sweetchuck\\GitHooks\\Composer\\Scripts::deploy"
-    }
+        "acceptance-robo-file": "ln -s ./tests/_support/Helper/RoboFiles/SerializeRoboFile.php ./RoboFileSerialize.php"
+    },
+    "scripts-descriptions": {}
 }
