@@ -6,10 +6,10 @@ namespace Sweetchuck\Robo\Serialize\Tests\Unit\Task;
 
 use Codeception\Test\Unit;
 use League\Container\Container as LeagueContainer;
-use League\Container\ContainerInterface;
 use Robo\Collection\CollectionBuilder;
 use Robo\Config\Config as RoboConfig;
 use Robo\Robo;
+use Psr\Container\ContainerInterface;
 use Sweetchuck\Codeception\Module\RoboTaskRunner\DummyOutput;
 use Sweetchuck\Robo\Serialize\Test\Helper\Dummy\DummyTaskBuilder;
 use Sweetchuck\Robo\Serialize\Test\UnitTester;
@@ -111,7 +111,7 @@ class SerializeTaskTest extends Unit
         ]);
 
         $result = $task->run();
-
-        $this->tester->assertEquals($expected, $writer->fetch());
+        $this->tester->assertEquals($expected, $writer->fetch(), 'writer usage');
+        $this->tester->assertEquals($expected, $result['serialized'], 'provided asset: serialized');
     }
 }

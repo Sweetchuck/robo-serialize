@@ -4,8 +4,89 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdac7274210f125dc250f3c92f5b120f",
+    "content-hash": "0605f6be750856e591868f6c085738b6",
     "packages": [
+        {
+            "name": "composer/semver",
+            "version": "3.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/semver.git",
+                "reference": "83e511e247de329283478496f7a1e114c9517506"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/semver/zipball/83e511e247de329283478496f7a1e114c9517506",
+                "reference": "83e511e247de329283478496f7a1e114c9517506",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.2 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.54",
+                "symfony/phpunit-bridge": "^4.2 || ^5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Semver\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Adermann",
+                    "email": "naderman@naderman.de",
+                    "homepage": "http://www.naderman.de"
+                },
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                },
+                {
+                    "name": "Rob Bast",
+                    "email": "rob.bast@gmail.com",
+                    "homepage": "http://robbast.nl"
+                }
+            ],
+            "description": "Semver library that offers utilities, version constraint parsing and validation.",
+            "keywords": [
+                "semantic",
+                "semver",
+                "validation",
+                "versioning"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/semver/issues",
+                "source": "https://github.com/composer/semver/tree/3.2.6"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-10-25T11:34:17+00:00"
+        },
         {
             "name": "consolidation/annotated-command",
             "version": "4.4.0",
@@ -234,51 +315,49 @@
         },
         {
             "name": "consolidation/robo",
-            "version": "2.2.2",
+            "version": "3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/Robo.git",
-                "reference": "b365df174d9cfb0f5814e4f3275a1c558b17bc4c"
+                "reference": "36dce2965a67abe5cf91f2bc36d2582a64a11258"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/Robo/zipball/b365df174d9cfb0f5814e4f3275a1c558b17bc4c",
-                "reference": "b365df174d9cfb0f5814e4f3275a1c558b17bc4c",
+                "url": "https://api.github.com/repos/consolidation/Robo/zipball/36dce2965a67abe5cf91f2bc36d2582a64a11258",
+                "reference": "36dce2965a67abe5cf91f2bc36d2582a64a11258",
                 "shasum": ""
             },
             "require": {
-                "consolidation/annotated-command": "^4.2.1",
-                "consolidation/config": "^1.2.1|^2",
-                "consolidation/log": "^1.1.1|^2.0.1",
-                "consolidation/output-formatters": "^4.1.1",
-                "consolidation/self-update": "^1.2",
-                "league/container": "^2.4.1",
+                "consolidation/annotated-command": "^4.3",
+                "consolidation/config": "^1.2.1|^2.0.1",
+                "consolidation/log": "^1.1.1|^2.0.2",
+                "consolidation/output-formatters": "^4.1.2",
+                "consolidation/self-update": "^2.0",
+                "league/container": "^3.3.1",
                 "php": ">=7.1.3",
-                "symfony/console": "^4.4.11|^5",
-                "symfony/event-dispatcher": "^4.4.11|^5",
-                "symfony/filesystem": "^4.4.11|^5",
-                "symfony/finder": "^4.4.11|^5",
-                "symfony/process": "^4.4.11|^5",
-                "symfony/yaml": "^4.0 || ^5.0"
+                "symfony/console": "^4.4.19 || ^5",
+                "symfony/event-dispatcher": "^4.4.19 || ^5",
+                "symfony/filesystem": "^4.4.9 || ^5",
+                "symfony/finder": "^4.4.9 || ^5",
+                "symfony/process": "^4.4.9 || ^5",
+                "symfony/yaml": "^4.4 || ^5"
             },
             "conflict": {
                 "codegyre/robo": "*"
             },
             "require-dev": {
-                "g1a/composer-test-scenarios": "^3",
                 "natxet/cssmin": "3.0.4",
                 "patchwork/jsqueeze": "^2",
                 "pear/archive_tar": "^1.4.4",
-                "php-coveralls/php-coveralls": "^2.2",
-                "phpdocumentor/reflection-docblock": "^4.3.2",
-                "phpunit/phpunit": "^6.5.14",
-                "squizlabs/php_codesniffer": "^3"
+                "phpunit/phpunit": "^7.5.20 | ^8",
+                "squizlabs/php_codesniffer": "^3.6",
+                "yoast/phpunit-polyfills": "^0.2.0"
             },
             "suggest": {
-                "henrikbjorn/lurker": "For monitoring filesystem changes in taskWatch",
                 "natxet/cssmin": "For minifying CSS files in taskMinify",
                 "patchwork/jsqueeze": "For minifying JS files in taskMinify",
-                "pear/archive_tar": "Allows tar archives to be created and extracted in taskPack and taskExtract, respectively."
+                "pear/archive_tar": "Allows tar archives to be created and extracted in taskPack and taskExtract, respectively.",
+                "totten/lurkerlite": "For monitoring filesystem changes in taskWatch"
             },
             "bin": [
                 "robo"
@@ -329,25 +408,26 @@
             "description": "Modern task runner",
             "support": {
                 "issues": "https://github.com/consolidation/Robo/issues",
-                "source": "https://github.com/consolidation/Robo/tree/2.2.2"
+                "source": "https://github.com/consolidation/Robo/tree/3.0.6"
             },
-            "time": "2020-12-18T22:09:18+00:00"
+            "time": "2021-10-05T23:56:45+00:00"
         },
         {
             "name": "consolidation/self-update",
-            "version": "1.2.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/self-update.git",
-                "reference": "dba6b2c0708f20fa3ba8008a2353b637578849b4"
+                "reference": "7d6877f8006c51069e1469a9c57b1435640f74b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/self-update/zipball/dba6b2c0708f20fa3ba8008a2353b637578849b4",
-                "reference": "dba6b2c0708f20fa3ba8008a2353b637578849b4",
+                "url": "https://api.github.com/repos/consolidation/self-update/zipball/7d6877f8006c51069e1469a9c57b1435640f74b7",
+                "reference": "7d6877f8006c51069e1469a9c57b1435640f74b7",
                 "shasum": ""
             },
             "require": {
+                "composer/semver": "^3.2",
                 "php": ">=5.5.0",
                 "symfony/console": "^2.8|^3|^4|^5",
                 "symfony/filesystem": "^2.5|^3|^4|^5"
@@ -358,7 +438,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.x-dev"
+                    "dev-main": "2.x-dev"
                 }
             },
             "autoload": {
@@ -383,45 +463,9 @@
             "description": "Provides a self:update command for Symfony Console applications.",
             "support": {
                 "issues": "https://github.com/consolidation/self-update/issues",
-                "source": "https://github.com/consolidation/self-update/tree/1.2.0"
+                "source": "https://github.com/consolidation/self-update/tree/2.0.0"
             },
-            "time": "2020-04-13T02:49:20+00:00"
-        },
-        {
-            "name": "container-interop/container-interop",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/container-interop/container-interop.git",
-                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/container-interop/container-interop/zipball/79cbf1341c22ec75643d841642dd5d6acd83bdb8",
-                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8",
-                "shasum": ""
-            },
-            "require": {
-                "psr/container": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Interop\\Container\\": "src/Interop/Container/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-            "homepage": "https://github.com/container-interop/container-interop",
-            "support": {
-                "issues": "https://github.com/container-interop/container-interop/issues",
-                "source": "https://github.com/container-interop/container-interop/tree/master"
-            },
-            "abandoned": "psr/container",
-            "time": "2017-02-14T19:40:03+00:00"
+            "time": "2021-10-05T23:29:47+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -539,37 +583,39 @@
         },
         {
             "name": "league/container",
-            "version": "2.5.0",
+            "version": "3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/container.git",
-                "reference": "8438dc47a0674e3378bcce893a0a04d79a2c22b3"
+                "reference": "84ecbc2dbecc31bd23faf759a0e329ee49abddbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/container/zipball/8438dc47a0674e3378bcce893a0a04d79a2c22b3",
-                "reference": "8438dc47a0674e3378bcce893a0a04d79a2c22b3",
+                "url": "https://api.github.com/repos/thephpleague/container/zipball/84ecbc2dbecc31bd23faf759a0e329ee49abddbd",
+                "reference": "84ecbc2dbecc31bd23faf759a0e329ee49abddbd",
                 "shasum": ""
             },
             "require": {
-                "container-interop/container-interop": "^1.2",
-                "php": "^5.4 || ^7.0 || ^8.0"
+                "php": "^7.0 || ^8.0",
+                "psr/container": "^1.0.0"
             },
             "provide": {
-                "container-interop/container-interop-implementation": "^1.2",
                 "psr/container-implementation": "^1.0"
             },
             "replace": {
                 "orno/di": "~2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.36",
-                "scrutinizer/ocular": "^1.3",
+                "phpunit/phpunit": "^6.0 || ^7.0",
+                "roave/security-advisories": "dev-latest",
+                "scrutinizer/ocular": "^1.8",
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
+                    "dev-master": "3.x-dev",
+                    "dev-3.x": "3.x-dev",
                     "dev-2.x": "2.x-dev",
                     "dev-1.x": "1.x-dev"
                 }
@@ -604,7 +650,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/container/issues",
-                "source": "https://github.com/thephpleague/container/tree/2.5.0"
+                "source": "https://github.com/thephpleague/container/tree/3.4.1"
             },
             "funding": [
                 {
@@ -612,7 +658,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-22T09:20:06+00:00"
+            "time": "2021-07-09T08:23:52+00:00"
         },
         {
             "name": "psr/container",
@@ -2652,37 +2698,35 @@
         },
         {
             "name": "nuvoleweb/robo-config",
-            "version": "2.x-dev",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nuvoleweb/robo-config.git",
-                "reference": "bcb737c3902cb2f0b21f6be9983bd39aa3263542"
+                "url": "https://github.com/Sweetchuck/robo-config.git",
+                "reference": "3c00866b24512bc64b96ad54ad5b1174bb8287c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nuvoleweb/robo-config/zipball/bcb737c3902cb2f0b21f6be9983bd39aa3263542",
-                "reference": "bcb737c3902cb2f0b21f6be9983bd39aa3263542",
+                "url": "https://api.github.com/repos/Sweetchuck/robo-config/zipball/3c00866b24512bc64b96ad54ad5b1174bb8287c4",
+                "reference": "3c00866b24512bc64b96ad54ad5b1174bb8287c4",
                 "shasum": ""
             },
             "require": {
-                "consolidation/robo": "^2.1"
+                "consolidation/robo": "^3.0"
             },
             "require-dev": {
                 "drupal/coder": "^8",
-                "phpro/grumphp": "0.14.0",
+                "phpro/grumphp": "^0.22",
                 "phpunit/phpunit": "^7"
             },
-            "default-branch": true,
             "type": "robo-tasks",
             "autoload": {
                 "psr-4": {
-                    "NuvoleWeb\\Robo\\Task\\Config\\": "src",
-                    "NuvoleWeb\\Robo\\Tests\\": "tests"
+                    "NuvoleWeb\\Robo\\Task\\Config\\": "src/",
+                    "NuvoleWeb\\Robo\\Tests\\": "tests/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -2692,10 +2736,9 @@
             ],
             "description": "CI/developer-friendly configuration processor for Robo.",
             "support": {
-                "issues": "https://github.com/nuvoleweb/robo-config/issues",
-                "source": "https://github.com/nuvoleweb/robo-config/tree/2.x"
+                "source": "https://github.com/Sweetchuck/robo-config/tree/3.x"
             },
-            "time": "2020-06-11T14:13:04+00:00"
+            "time": "2021-09-27T18:30:15+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -4630,21 +4673,21 @@
         },
         {
             "name": "sweetchuck/codeception-module-robo-task-runner",
-            "version": "1.x-dev",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sweetchuck/codeception-module-robo-task-runner.git",
-                "reference": "fa8036a53ef96bda2f9bcbd35165cecb10c7f2d7"
+                "reference": "61eb2310c7e5caaebc4aef4ff848a85179f7e2f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sweetchuck/codeception-module-robo-task-runner/zipball/fa8036a53ef96bda2f9bcbd35165cecb10c7f2d7",
-                "reference": "fa8036a53ef96bda2f9bcbd35165cecb10c7f2d7",
+                "url": "https://api.github.com/repos/Sweetchuck/codeception-module-robo-task-runner/zipball/61eb2310c7e5caaebc4aef4ff848a85179f7e2f4",
+                "reference": "61eb2310c7e5caaebc4aef4ff848a85179f7e2f4",
                 "shasum": ""
             },
             "require": {
                 "codeception/codeception": "^4.0",
-                "consolidation/robo": "^2.0",
+                "consolidation/robo": "^3.0",
                 "php": ">=7.4",
                 "symfony/process": "^4.0 || ^5.0"
             },
@@ -4653,7 +4696,6 @@
                 "squizlabs/php_codesniffer": "^3.5",
                 "sweetchuck/git-hooks": "^2.x-dev"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -4668,9 +4710,9 @@
             "description": "Runs a Robo task.",
             "support": {
                 "issues": "https://github.com/Sweetchuck/codeception-module-robo-task-runner/issues",
-                "source": "https://github.com/Sweetchuck/codeception-module-robo-task-runner/tree/1.x"
+                "source": "https://github.com/Sweetchuck/codeception-module-robo-task-runner/tree/2.x"
             },
-            "time": "2021-09-02T13:17:23+00:00"
+            "time": "2021-09-02T13:55:03+00:00"
         },
         {
             "name": "sweetchuck/git-hooks",
@@ -4803,35 +4845,35 @@
         },
         {
             "name": "sweetchuck/robo-git",
-            "version": "1.x-dev",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sweetchuck/robo-git.git",
-                "reference": "c63aa5d74c79fdba52937be2cb7770a751f6817e"
+                "reference": "0f1c2e524c7075dccf42af284121926a1230e8a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sweetchuck/robo-git/zipball/c63aa5d74c79fdba52937be2cb7770a751f6817e",
-                "reference": "c63aa5d74c79fdba52937be2cb7770a751f6817e",
+                "url": "https://api.github.com/repos/Sweetchuck/robo-git/zipball/0f1c2e524c7075dccf42af284121926a1230e8a5",
+                "reference": "0f1c2e524c7075dccf42af284121926a1230e8a5",
                 "shasum": ""
             },
             "require": {
-                "consolidation/robo": "^2.0",
-                "php": ">=7.3"
+                "consolidation/robo": "^3.0",
+                "php": ">=7.4"
             },
             "require-dev": {
-                "codeception/codeception": "^4.0",
-                "codeception/module-asserts": "^1.1",
+                "codeception/codeception": "^4.1",
+                "codeception/module-asserts": "^1.3",
                 "ext-json": "*",
-                "phpunit/phpunit": "^8.0",
-                "squizlabs/php_codesniffer": "^3.0",
-                "sweetchuck/codeception-module-robo-task-runner": "1.x-dev",
+                "squizlabs/php_codesniffer": "^3.6",
+                "sweetchuck/codeception-module-robo-task-runner": "2.x-dev",
                 "sweetchuck/git-hooks": "2.x-dev",
                 "symfony/debug": "^4.4 || ^5.0",
-                "symfony/error-handler": "^4.4 || ^5.0",
-                "symfony/finder": "^4.4 || ^5.0",
+                "symfony/error-handler": "^5.2",
+                "symfony/finder": "^5.2",
                 "webmozart/path-util": "^2.3"
             },
+            "default-branch": true,
             "type": "robo-tasks",
             "autoload": {
                 "psr-4": {
@@ -4859,42 +4901,43 @@
                 "issues": "https://github.com/Sweetchuck/robo-git/issues",
                 "source": "https://github.com/Sweetchuck/robo-git"
             },
-            "time": "2021-09-03T10:04:52+00:00"
+            "time": "2021-09-01T19:20:51+00:00"
         },
         {
             "name": "sweetchuck/robo-phpcs",
-            "version": "1.x-dev",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sweetchuck/robo-phpcs.git",
-                "reference": "a3bcccc8082f5938ab4e1fe90fef87afbc3ed47f"
+                "reference": "90d618cb1757193f6d900f10ff42fd331cb8ed74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sweetchuck/robo-phpcs/zipball/a3bcccc8082f5938ab4e1fe90fef87afbc3ed47f",
-                "reference": "a3bcccc8082f5938ab4e1fe90fef87afbc3ed47f",
+                "url": "https://api.github.com/repos/Sweetchuck/robo-phpcs/zipball/90d618cb1757193f6d900f10ff42fd331cb8ed74",
+                "reference": "90d618cb1757193f6d900f10ff42fd331cb8ed74",
                 "shasum": ""
             },
             "require": {
-                "consolidation/robo": "^2.0",
+                "consolidation/robo": "^3.0",
                 "ext-dom": "*",
                 "ext-json": "*",
-                "php": ">=7.3",
+                "php": ">=7.4",
                 "sweetchuck/lint-report": "1.x-dev",
                 "webmozart/path-util": "^2.3"
             },
             "require-dev": {
-                "codeception/codeception": "^4.1",
-                "codeception/module-asserts": "^1.3",
+                "codeception/codeception": "^4.0",
+                "codeception/module-asserts": "^1.1",
                 "cweagans/composer-patches": "^1.6",
                 "mikey179/vfsstream": "^1.6",
                 "phpunit/phpunit": "^8.0",
                 "squizlabs/php_codesniffer": "^3.0",
-                "sweetchuck/codeception-module-robo-task-runner": "1.x-dev",
+                "sweetchuck/codeception-module-robo-task-runner": "2.x-dev",
                 "sweetchuck/git-hooks": "2.x-dev",
-                "sweetchuck/robo-git": "1.x-dev",
+                "sweetchuck/robo-git": "2.x-dev",
                 "symfony/yaml": "^4.0 || ^5.0"
             },
+            "default-branch": true,
             "type": "robo-tasks",
             "autoload": {
                 "psr-4": {
@@ -4923,7 +4966,7 @@
                 "issues": "https://github.com/Sweetchuck/robo-phpcs/issues",
                 "source": "https://github.com/Sweetchuck/robo-phpcs"
             },
-            "time": "2021-11-24T18:46:24+00:00"
+            "time": "2021-11-24T19:05:40+00:00"
         },
         {
             "name": "symfony/css-selector",

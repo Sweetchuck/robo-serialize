@@ -1,7 +1,7 @@
 # Robo task to serialize data structures
 
-[![CircleCI](https://circleci.com/gh/Sweetchuck/robo-serialize/tree/1.x.svg?style=svg)](https://circleci.com/gh/Sweetchuck/robo-serialize/?branch=1.x)
-[![codecov](https://codecov.io/gh/Sweetchuck/robo-serialize/branch/1.x/graph/badge.svg?token=M7avP9BiV1)](https://app.codecov.io/gh/Sweetchuck/robo-serialize/branch/1.x)
+[![CircleCI](https://circleci.com/gh/Sweetchuck/robo-serialize/tree/2.x.svg?style=svg)](https://circleci.com/gh/Sweetchuck/robo-serialize/?branch=2.x)
+[![codecov](https://codecov.io/gh/Sweetchuck/robo-serialize/branch/2.x/graph/badge.svg?token=M7avP9BiV1)](https://app.codecov.io/gh/Sweetchuck/robo-serialize/branch/2.x)
 
 
 ## Install
