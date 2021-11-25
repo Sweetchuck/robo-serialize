@@ -31,7 +31,7 @@ class RoboFileExample extends Tasks
      */
     public function serializeExample1(): TaskInterface
     {
-        // The file name can be my_config.yml as well.
+        // The file name can be my_config.json as well.
         $dstFileName = 'php://stdout';
         $serializer = $this->getSerializer('json');
         $writer = new StreamOutput(fopen($dstFileName, 'w+'));
@@ -39,19 +39,19 @@ class RoboFileExample extends Tasks
         return $this
             ->collectionBuilder()
             ->addCode(function (RoboStateData $data): int {
-                $data['my_config.yml'] = [
-                    'description' => 'this is the initial value of the my_config.yml',
+                $data['my_config.json'] = [
+                    'description' => 'this is the initial value of the my_config.json',
                 ];
 
                 return 0;
             })
-            ->addCode($this->getTaskIndependentConfigManipulator1('my_config.yml'))
-            ->addCode($this->getTaskIndependentConfigManipulator2('my_config.yml'))
+            ->addCode($this->getTaskIndependentConfigManipulator1('my_config.json'))
+            ->addCode($this->getTaskIndependentConfigManipulator2('my_config.json'))
             ->addTask($this
                 ->taskSerialize()
                 ->setSerializer($serializer)
                 ->setWriter($writer)
-                ->deferTaskConfiguration('setValue', 'my_config.yml')
+                ->deferTaskConfiguration('setValue', 'my_config.json')
             );
     }
 
