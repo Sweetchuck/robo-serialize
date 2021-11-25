@@ -19,6 +19,7 @@ use Symfony\Component\ErrorHandler\BufferingLogger;
 
 /**
  * @covers \Sweetchuck\Robo\Serialize\Task\SerializeTask
+ * @covers \Sweetchuck\Robo\Serialize\SerializeTaskLoader
  */
 class SerializeTaskTest extends Unit
 {
@@ -105,6 +106,7 @@ class SerializeTaskTest extends Unit
         $writer = new BufferedOutput();
 
         $task = $this->taskBuilder->taskSerialize([
+            'assetNamePrefix' => 'my_config.',
             'value' => $value,
             'serializer' => $this->taskBuilder->getSerializer($serializerName),
             'writer' => $writer,
@@ -112,6 +114,6 @@ class SerializeTaskTest extends Unit
 
         $result = $task->run();
         $this->tester->assertEquals($expected, $writer->fetch(), 'writer usage');
-        $this->tester->assertEquals($expected, $result['serialized'], 'provided asset: serialized');
+        $this->tester->assertEquals($expected, $result['my_config.serialized'], 'provided asset: serialized');
     }
 }
