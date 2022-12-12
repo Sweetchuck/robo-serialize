@@ -47,7 +47,7 @@
         "sweetchuck/git-hooks": "2.x-dev",
         "sweetchuck/robo-git": "2.x-dev",
         "sweetchuck/robo-phpcs": "2.x-dev",
-        "sweetchuck/utils": "2.x-dev",
+        "sweetchuck/utils": "1.x-dev",
         "symfony/debug": "^4.4 || ^5.0 || ^6.0",
         "symfony/error-handler": "^4.4 || ^5.0 || ^6.0",
         "symfony/filesystem": "^5.4 || ^6.0",

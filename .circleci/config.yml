@@ -18,6 +18,7 @@ orbs:
 
 executors:
     php_min:
+        resource_class: 'small'
         environment:
             <<: *env_common
             <<: *env_xdebug
@@ -29,6 +30,7 @@ executors:
                 image: 'cimg/php:7.4'
 
     php_plus1:
+        resource_class: 'small'
         environment:
             <<: *env_common
             <<: *env_xdebug
@@ -40,6 +42,7 @@ executors:
                 image: 'cimg/php:8.0'
 
     php_plus2:
+        resource_class: 'small'
         environment:
             <<: *env_common
             <<: *env_xdebug
@@ -51,25 +54,45 @@ executors:
                 image: 'cimg/php:8.1'
 
 commands:
-    pecl_install_yaml:
-        description: 'Install YAML extension for PHP'
+    install_php_extension_pcov:
+        description: 'Install PCOV PHP extension'
         steps:
             -
                 run:
-                    name: 'Install YAML extension for PHP – apt-get install'
+                    name: 'Install PCOV PHP extension - pecl install pcov'
+                    command: |
+                        if php -m | grep pcov ; then
+                            exit 0
+                        fi
+
+                        sudo pecl install pcov
+                        if php -m | grep pcov ; then
+                            exit 0
+                        fi
+
+                        scanDir="$(php -i | grep --color=never --only-matching --perl-regexp '(?<=^Scan this dir for additional \.ini files => ).+')"
+                        echo 'extension=pcov' | sudo tee "${scanDir}/pcov.ini"
+                        php -m | grep pcov
+
+    install_php_extension_yaml:
+        description: 'Install YAML PHP extension'
+        steps:
+            -
+                run:
+                    name: 'Install YAML PHP extension'
                     command: |
                         sudo apt-get update -y
                         sudo apt-get install -y libyaml-dev
-            -
-                run:
-                    name: 'Install YAML extension for PHP – pecl install'
-                    command: |
-                        sudo pecl install yaml
-            -
-                run:
-                    name: 'Install YAML extension for PHP – php.ini'
-                    command: |
-                        echo 'extension=yaml' | sudo tee /usr/local/etc/php/conf.d/yaml.ini
+                        sudo pecl install \
+                            --configureoptions 'with-yaml="autodetect"' \
+                            yaml
+
+                        if php -m | grep yaml ; then
+                            exit 0
+                        fi
+
+                        scanDir="$(php -i | grep --color=never --only-matching --perl-regexp '(?<=^Scan this dir for additional \.ini files => ).+')"
+                        echo 'extension=yaml' | sudo tee "${scanDir}/yaml.ini"
 
     composer_install:
         description: 'Install Composer dependencies with cache restore and save'
@@ -100,7 +123,7 @@ commands:
                 run:
                     name: 'Run linters'
                     command: |
-                        "$(composer config bin-dir)robo" lint
+                        "$(composer config bin-dir)/robo" lint
 
     test:
         description: 'Run tests'
@@ -115,7 +138,7 @@ commands:
                 run:
                     name: 'Codeception - unit'
                     command: |
-                        "$(composer config bin-dir)robo" test unit
+                        "$(composer config bin-dir)/robo" test unit
             -
                 codecov/upload:
                     flags: 'unit'
@@ -124,7 +147,7 @@ commands:
                 run:
                     name: 'Codeception - acceptance'
                     command: |
-                        "$(composer config bin-dir)robo" test acceptance
+                        "$(composer config bin-dir)/robo" test acceptance
             -
                 codecov/upload:
                     flags: 'acceptance'
@@ -152,7 +175,8 @@ jobs:
         executor: 'php_min'
         working_directory: '~/repo'
         steps:
-            - 'pecl_install_yaml'
+            - 'install_php_extension_pcov'
+            - 'install_php_extension_yaml'
             - 'checkout'
             - 'composer_install'
             - 'test'
@@ -160,7 +184,17 @@ jobs:
         executor: 'php_plus1'
         working_directory: '~/repo'
         steps:
-            - 'pecl_install_yaml'
+            - 'install_php_extension_pcov'
+            - 'install_php_extension_yaml'
+            - 'checkout'
+            - 'composer_install'
+            - 'test'
+    test_php_plus2:
+        executor: 'php_plus2'
+        working_directory: '~/repo'
+        steps:
+            - 'install_php_extension_pcov'
+            - 'install_php_extension_yaml'
             - 'checkout'
             - 'composer_install'
             - 'test'
@@ -180,5 +214,9 @@ workflows:
                         - 'build'
             -
                 test_php_plus1:
+                    requires:
+                        - 'build'
+            -
+                test_php_plus2:
                     requires:
                         - 'build'
