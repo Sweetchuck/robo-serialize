@@ -1,11 +1,13 @@
 
 /tests/_data/actual/
-/tests/_output/
+/tests/_log/
 /tests/_support/_generated/
 
 /vendor/
 
 /.git-hooks.local
+
+/phpstan.neon
 
 /robo.yml
 /RoboFileExample.php
