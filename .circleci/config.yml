@@ -4,9 +4,6 @@ version: 2.1
 .env_common: &env_common
     SHELL: '/bin/bash'
 
-.env_xdebug: &env_xdebug
-    XDEBUG_MODE: 'coverage'
-
 .env_composer: &env_composer
     COMPOSER_NO_INTERACTION: '1'
     COMPOSER_MEMORY_LIMIT: '-1'
@@ -21,9 +18,7 @@ executors:
         resource_class: 'small'
         environment:
             <<: *env_common
-            <<: *env_xdebug
             <<: *env_composer
-
         docker:
             -
                 name: 'main'
@@ -33,9 +28,7 @@ executors:
         resource_class: 'small'
         environment:
             <<: *env_common
-            <<: *env_xdebug
             <<: *env_composer
-
         docker:
             -
                 name: 'main'
@@ -45,13 +38,21 @@ executors:
         resource_class: 'small'
         environment:
             <<: *env_common
-            <<: *env_xdebug
             <<: *env_composer
-
         docker:
             -
                 name: 'main'
                 image: 'cimg/php:8.1'
+
+    php_plus3:
+        resource_class: 'small'
+        environment:
+            <<: *env_common
+            <<: *env_composer
+        docker:
+            -
+                name: 'main'
+                image: 'cimg/php:8.2'
 
 commands:
     install_php_extension_pcov:
@@ -160,38 +161,20 @@ commands:
 jobs:
     build:
         executor: 'php_min'
-        working_directory: '~/repo'
         steps:
             - 'checkout'
             - 'composer_install'
     lint:
         executor: 'php_min'
-        working_directory: '~/repo'
         steps:
             - 'checkout'
             - 'composer_install'
             - 'lint'
-    test_php_min:
-        executor: 'php_min'
-        working_directory: '~/repo'
-        steps:
-            - 'install_php_extension_pcov'
-            - 'install_php_extension_yaml'
-            - 'checkout'
-            - 'composer_install'
-            - 'test'
-    test_php_plus1:
-        executor: 'php_plus1'
-        working_directory: '~/repo'
-        steps:
-            - 'install_php_extension_pcov'
-            - 'install_php_extension_yaml'
-            - 'checkout'
-            - 'composer_install'
-            - 'test'
-    test_php_plus2:
-        executor: 'php_plus2'
-        working_directory: '~/repo'
+    test:
+        parameters:
+            executor:
+                type: 'string'
+        executor: '<<parameters.executor>>'
         steps:
             - 'install_php_extension_pcov'
             - 'install_php_extension_yaml'
@@ -209,14 +192,14 @@ workflows:
                     requires:
                         - 'build'
             -
-                test_php_min:
+                test:
+                    name: 'test_<<matrix.executor>>'
                     requires:
                         - 'build'
-            -
-                test_php_plus1:
-                    requires:
-                        - 'build'
-            -
-                test_php_plus2:
-                    requires:
-                        - 'build'
+                    matrix:
+                        parameters:
+                            executor:
+                                - 'php_min'
+                                - 'php_plus1'
+                                - 'php_plus2'
+                                - 'php_plus3'
