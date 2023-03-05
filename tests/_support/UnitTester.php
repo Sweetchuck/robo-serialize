@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Sweetchuck\Robo\Serialize\Test;
+namespace Sweetchuck\Robo\Serialize\Tests;
 
 use Codeception\Actor;
 

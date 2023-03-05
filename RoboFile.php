@@ -14,6 +14,7 @@ use Robo\Tasks;
 use Sweetchuck\LintReport\Reporter\BaseReporter;
 use Sweetchuck\Robo\Git\GitTaskLoader;
 use Sweetchuck\Robo\Phpcs\PhpcsTaskLoader;
+use Sweetchuck\Robo\Phpstan\PhpstanTaskLoader;
 use Sweetchuck\Utils\Filter\ArrayFilterEnabled;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -28,6 +29,7 @@ class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterfa
     use ConfigLoader;
     use GitTaskLoader;
     use PhpcsTaskLoader;
+    use PhpstanTaskLoader;
 
     /**
      * @var array<string, mixed>
@@ -142,7 +144,8 @@ class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterfa
         return $this
             ->collectionBuilder()
             ->addTask($this->taskComposerValidate())
-            ->addTask($this->getTaskPhpcsLint());
+            ->addTask($this->getTaskPhpcsLint())
+            ->addTask($this->getTaskPhpstanAnalyze());
     }
 
     /**
@@ -157,6 +160,16 @@ class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterfa
         return $this->getTaskPhpcsLint();
     }
 
+    /**
+     * @command lint:phpstan
+     *
+     * @initLintReporters
+     */
+    public function lintPhpstan(): TaskInterface
+    {
+        return $this->getTaskPhpstanAnalyze();
+    }
+
     protected function errorOutput(): OutputInterface
     {
         $output = $this->output();
@@ -164,20 +177,14 @@ class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterfa
         return ($output instanceof ConsoleOutputInterface) ? $output->getErrorOutput() : $output;
     }
 
-    /**
-     * @return $this
-     */
-    protected function initEnvVarNamePrefix()
+    protected function initEnvVarNamePrefix(): static
     {
         $this->envVarNamePrefix = strtoupper(str_replace('-', '_', $this->packageName));
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    protected function initEnvironmentTypeAndName()
+    protected function initEnvironmentTypeAndName(): static
     {
         $this->environmentType = (string) getenv($this->getEnvVarName('environment_type'));
         $this->environmentName = (string) getenv($this->getEnvVarName('environment_name'));
@@ -220,10 +227,7 @@ class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterfa
         return "{$this->envVarNamePrefix}_" . strtoupper($name);
     }
 
-    /**
-     * @return $this
-     */
-    protected function initComposerInfo()
+    protected function initComposerInfo(): static
     {
         if ($this->composerInfo) {
             return $this;
@@ -245,10 +249,7 @@ class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterfa
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    protected function initCodeceptionInfo()
+    protected function initCodeceptionInfo(): static
     {
         if ($this->codeceptionInfo) {
             return $this;
@@ -484,6 +485,19 @@ class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterfa
         }
 
         return $this->taskPhpcsLintFiles($options);
+    }
+
+    protected function getTaskPhpstanAnalyze(): TaskInterface
+    {
+        /** @var \Sweetchuck\LintReport\Reporter\VerboseReporter $verboseReporter */
+        $verboseReporter = $this->getContainer()->get('lintVerboseReporter');
+        $verboseReporter->setFilePathStyle('relative');
+
+        return $this
+            ->taskPhpstanAnalyze()
+            ->setNoProgress(true)
+            ->setErrorFormat('json')
+            ->addLintReporter('lintVerboseReporter', $verboseReporter);
     }
 
     protected function getLogDir(): string

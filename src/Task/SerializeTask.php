@@ -5,27 +5,10 @@ declare(strict_types = 1);
 namespace Sweetchuck\Robo\Serialize\Task;
 
 use Robo\Result;
-use Robo\Task\BaseTask;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class SerializeTask extends BaseTask
 {
-    protected string $assetNamePrefix = '';
-
-    public function getAssetNamePrefix(): string
-    {
-        return $this->assetNamePrefix;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setAssetNamePrefix(string $assetNamePrefix)
-    {
-        $this->assetNamePrefix = $assetNamePrefix;
-
-        return $this;
-    }
 
     /**
      * @var mixed
@@ -41,9 +24,9 @@ class SerializeTask extends BaseTask
     }
 
     /**
-     * @return $this
+     * @param mixed $value
      */
-    public function setValue($value)
+    public function setValue($value): static
     {
         $this->value = $value;
 
@@ -60,10 +43,7 @@ class SerializeTask extends BaseTask
         return $this->serializer;
     }
 
-    /**
-     * @return $this
-     */
-    public function setSerializer(?callable $serializer)
+    public function setSerializer(?callable $serializer): static
     {
         $this->serializer = $serializer;
 
@@ -77,32 +57,30 @@ class SerializeTask extends BaseTask
         return $this->writer;
     }
 
-    /**
-     * @return $this
-     */
-    public function setWriter(?OutputInterface $writer)
+    public function setWriter(?OutputInterface $writer): static
     {
         $this->writer = $writer;
 
         return $this;
     }
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public function __construct(array $options = [])
     {
         $this->setOptions($options);
     }
 
     /**
-     * @return $this
+     * {@inheritdoc}
      */
-    public function setOptions(array $options)
+    public function setOptions(array $options): static
     {
+        parent::setOptions($options);
+
         foreach ($options as $key => $value) {
             switch ($key) {
-                case 'assetNamePrefix':
-                    $this->setAssetNamePrefix($value);
-                    break;
-
                 case 'value':
                     $this->setValue($value);
                     break;

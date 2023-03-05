@@ -1,7 +1,6 @@
-
-class_name: 'AcceptanceTester'
+actor: 'AcceptanceTester'
 modules:
     enabled:
         - 'Asserts'
-        - '\Sweetchuck\Robo\Serialize\Test\Helper\Acceptance'
+        - '\Sweetchuck\Robo\Serialize\Tests\Helper\Acceptance'
         - '\Sweetchuck\Codeception\Module\RoboTaskRunner\RoboTaskRunner'

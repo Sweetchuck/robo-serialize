@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Sweetchuck\Robo\Serialize\Test\Helper\RoboFiles;
+namespace Sweetchuck\Robo\Serialize\Tests\Helper\RoboFiles;
 
 use Robo\Contract\TaskInterface;
 use Robo\Tasks;

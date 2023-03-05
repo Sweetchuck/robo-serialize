@@ -1,2 +1,61 @@
 parameters:
-	ignoreErrors: {}
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Robo\\\\Collection\\\\CollectionBuilder\\:\\:setAssetNamePrefix\\(\\)\\.$#"
+			count: 1
+			path: ../RoboFile.php
+
+		-
+			message: "#^Call to an undefined method Robo\\\\Collection\\\\CollectionBuilder\\|Robo\\\\Task\\\\Filesystem\\\\FilesystemStack\\:\\:mkdir\\(\\)\\.$#"
+			count: 4
+			path: ../RoboFile.php
+
+		-
+			message: "#^Call to an undefined method Robo\\\\Collection\\\\CollectionBuilder\\|Sweetchuck\\\\Robo\\\\Git\\\\Task\\\\GitListStagedFilesTask\\:\\:setPaths\\(\\)\\.$#"
+			count: 1
+			path: ../RoboFile.php
+
+		-
+			message: "#^Call to an undefined method Robo\\\\Collection\\\\CollectionBuilder\\|Sweetchuck\\\\Robo\\\\Git\\\\Task\\\\GitReadStagedFilesTask\\:\\:setCommandOnly\\(\\)\\.$#"
+			count: 1
+			path: ../RoboFile.php
+
+		-
+			message: "#^Call to an undefined method Robo\\\\Collection\\\\CollectionBuilder\\|Sweetchuck\\\\Robo\\\\Phpstan\\\\Task\\\\AnalyzeTask\\:\\:setNoProgress\\(\\)\\.$#"
+			count: 1
+			path: ../RoboFile.php
+
+		-
+			message: "#^Call to an undefined method Sweetchuck\\\\Robo\\\\Git\\\\Task\\\\GitReadStagedFilesTask\\:\\:deferTaskConfiguration\\(\\)\\.$#"
+			count: 1
+			path: ../RoboFile.php
+
+		-
+			message: "#^Function yaml_emit invoked with 4 parameters, 1\\-3 required\\.$#"
+			count: 1
+			path: ../tests/_support/Helper/Dummy/DummyTaskBuilder.php
+
+		-
+			message: "#^PHPDoc tag @return with type Robo\\\\Collection\\\\CollectionBuilder\\|Sweetchuck\\\\Robo\\\\Serialize\\\\Task\\\\SerializeTask is not subtype of native type Robo\\\\Collection\\\\CollectionBuilder\\.$#"
+			count: 1
+			path: ../tests/_support/Helper/Dummy/DummyTaskBuilder.php
+
+		-
+			message: "#^Parameter \\#2 \\$commandFile of static method Robo\\\\Collection\\\\CollectionBuilder\\:\\:create\\(\\) expects Robo\\\\Tasks, null given\\.$#"
+			count: 1
+			path: ../tests/_support/Helper/Dummy/DummyTaskBuilder.php
+
+		-
+			message: "#^Call to an undefined method Robo\\\\Collection\\\\CollectionBuilder\\:\\:setValue\\(\\)\\.$#"
+			count: 1
+			path: ../tests/_support/Helper/RoboFiles/RoboFileSerialize.php
+
+		-
+			message: "#^Function yaml_emit invoked with 4 parameters, 1\\-3 required\\.$#"
+			count: 1
+			path: ../tests/_support/Helper/RoboFiles/RoboFileSerialize.php
+
+		-
+			message: "#^PHPDoc tag @return with type Robo\\\\Collection\\\\CollectionBuilder\\|Sweetchuck\\\\Robo\\\\Serialize\\\\Task\\\\SerializeTask is not subtype of native type Robo\\\\Collection\\\\CollectionBuilder\\.$#"
+			count: 1
+			path: ../tests/_support/Helper/RoboFiles/RoboFileSerialize.php

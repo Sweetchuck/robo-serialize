@@ -11,6 +11,8 @@ use Symfony\Component\Yaml\Yaml;
 trait SerializeTaskLoader
 {
     /**
+     * @param array<string, mixed> $options
+     *
      * @return \Sweetchuck\Robo\Serialize\Task\SerializeTask|\Robo\Collection\CollectionBuilder
      */
     protected function taskSerialize(array $options = []): CollectionBuilder
@@ -37,6 +39,8 @@ trait SerializeTaskLoader
     }
 
     /**
+     * @param array<callable> $callbacks
+     *
      * @see \yaml_emit()
      */
     protected function getPeclYamlSerializer(int $encoding = 0, int $linebreak = 0, array $callbacks = []): callable
@@ -63,6 +67,7 @@ trait SerializeTaskLoader
      * @param int $flags
      *   Note that the $flags are different than the original one.
      *   \JSON_PRETTY_PRINT(128) + \JSON_UNESCAPED_UNICODE(256) = 384.
+     * @phpstan-param int<1, max> $depth
      *
      * @see \json_encode()
      * @see \JSON_PRETTY_PRINT
